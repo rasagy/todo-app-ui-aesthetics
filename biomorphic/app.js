@@ -19,6 +19,7 @@
       item &&
       typeof item.id === "string" &&
       typeof item.text === "string" &&
+      item.text.trim().length > 0 &&
       typeof item.completed === "boolean" &&
       typeof item.createdAt === "number" &&
       (typeof item.completedAt === "number" || item.completedAt === null)
@@ -28,10 +29,14 @@
   function loadTodos() {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (!raw) return [];
+      if (!raw) {
+        return [];
+      }
 
       const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return [];
+      if (!Array.isArray(parsed)) {
+        return [];
+      }
 
       return parsed.filter(isValidTodoItem).map((todo) => ({
         id: todo.id,
@@ -46,30 +51,14 @@
     }
   }
 
-  function saveTodos(todos) {
+  function saveTodos() {
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.todos));
       state.storageAvailable = true;
     } catch (error) {
       state.storageAvailable = false;
       console.warn("Could not save todos to localStorage.", error);
     }
-  }
-
-  function sortTodos(todos) {
-    return [...todos].sort((a, b) => {
-      if (a.completed !== b.completed) {
-        return Number(a.completed) - Number(b.completed);
-      }
-
-      if (!a.completed) {
-        return a.createdAt - b.createdAt;
-      }
-
-      const aCompletedAt = a.completedAt ?? Number.MAX_SAFE_INTEGER;
-      const bCompletedAt = b.completedAt ?? Number.MAX_SAFE_INTEGER;
-      return aCompletedAt - bCompletedAt;
-    });
   }
 
   function createTodo(text) {
@@ -88,11 +77,24 @@
     };
   }
 
-  function setEmptyStateVisibility() {
-    emptyState.hidden = state.todos.length > 0;
+  function sortTodos(todos) {
+    return [...todos].sort((a, b) => {
+      if (a.completed !== b.completed) {
+        return Number(a.completed) - Number(b.completed);
+      }
+
+      if (!a.completed) {
+        return a.createdAt - b.createdAt;
+      }
+
+      const aCompletedAt = a.completedAt ?? Number.MAX_SAFE_INTEGER;
+      const bCompletedAt = b.completedAt ?? Number.MAX_SAFE_INTEGER;
+      return aCompletedAt - bCompletedAt;
+    });
   }
 
-  function setStorageNoteVisibility() {
+  function setStatusVisibility() {
+    emptyState.hidden = state.todos.length > 0;
     storageNote.hidden = state.storageAvailable;
   }
 
@@ -109,8 +111,8 @@
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = todo.completed;
-      checkbox.setAttribute("aria-label", `Mark \"${todo.text}\" as done`);
       checkbox.dataset.todoId = todo.id;
+      checkbox.setAttribute("aria-label", `Mark ${todo.text} as done`);
 
       const text = document.createElement("span");
       text.className = "todo-text";
@@ -121,16 +123,17 @@
     }
 
     list.append(fragment);
-    setEmptyStateVisibility();
-    setStorageNoteVisibility();
+    setStatusVisibility();
   }
 
   function addTodoFromInput() {
     const text = input.value.trim();
-    if (!text) return;
+    if (!text) {
+      return;
+    }
 
     state.todos.push(createTodo(text));
-    saveTodos(state.todos);
+    saveTodos();
     render();
 
     input.value = "";
@@ -144,19 +147,24 @@
 
   list.addEventListener("change", (event) => {
     const target = event.target;
-    if (!(target instanceof HTMLInputElement)) return;
-    if (target.type !== "checkbox") return;
+    if (!(target instanceof HTMLInputElement) || target.type !== "checkbox") {
+      return;
+    }
 
     const { todoId } = target.dataset;
-    if (!todoId) return;
+    if (!todoId) {
+      return;
+    }
 
     const todo = state.todos.find((item) => item.id === todoId);
-    if (!todo) return;
+    if (!todo) {
+      return;
+    }
 
     todo.completed = target.checked;
     todo.completedAt = target.checked ? Date.now() : null;
 
-    saveTodos(state.todos);
+    saveTodos();
     render();
   });
 
