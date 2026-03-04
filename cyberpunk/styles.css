@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600;700&display=swap");
+
+:root {
+  --bg-0: #06060b;
+  --bg-1: #0b1020;
+  --panel: rgba(10, 16, 32, 0.9);
+  --panel-edge: rgba(56, 244, 241, 0.45);
+  --text: #d8fcff;
+  --muted: #78a9bc;
+  --cyan: #38f4f1;
+  --magenta: #ff2d8f;
+  --lime: #b7ff3c;
+  --danger: #ff4e4e;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Rajdhani", "Trebuchet MS", sans-serif;
+  line-height: 1.35;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(56, 244, 241, 0.14), transparent 30%),
+    radial-gradient(circle at 84% 78%, rgba(255, 45, 143, 0.13), transparent 36%),
+    linear-gradient(150deg, var(--bg-0), var(--bg-1));
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(56, 244, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 244, 241, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 80%);
+}
+
+.app {
+  position: relative;
+  width: min(100%, 48rem);
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.hud-header {
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  box-shadow:
+    0 0 0 1px rgba(56, 244, 241, 0.15) inset,
+    0 0 20px rgba(56, 244, 241, 0.2);
+}
+
+.kicker {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: var(--cyan);
+  font-family: "Orbitron", "Rajdhani", sans-serif;
+  font-size: clamp(1.45rem, 6.4vw, 2rem);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 8px rgba(56, 244, 241, 0.55);
+}
+
+.todo-form {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+}
+
+.todo-form input,
+.todo-form button {
+  min-height: 2.8rem;
+  border: 1px solid rgba(56, 244, 241, 0.55);
+  background: rgba(8, 16, 34, 0.9);
+  color: var(--text);
+  font: inherit;
+}
+
+.todo-form input {
+  border-radius: 0.6rem;
+  padding: 0 0.8rem;
+}
+
+.todo-form input::placeholder {
+  color: rgba(216, 252, 255, 0.55);
+}
+
+.todo-form button {
+  padding: 0 1rem;
+  border-radius: 0.6rem;
+  font-family: "Orbitron", "Rajdhani", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background:
+    linear-gradient(140deg, rgba(255, 45, 143, 0.92), rgba(99, 34, 255, 0.85));
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 45, 143, 0.45);
+}
+
+.todo-form button:active {
+  transform: translateY(1px);
+}
+
+.todo-list {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 0.75rem 0.8rem;
+  border: 1px solid rgba(56, 244, 241, 0.45);
+  border-radius: 0.6rem;
+  background: rgba(8, 13, 28, 0.88);
+  box-shadow: 0 0 0 1px rgba(56, 244, 241, 0.14) inset;
+}
+
+.todo-item.done {
+  border-color: rgba(183, 255, 60, 0.45);
+  box-shadow: 0 0 0 1px rgba(183, 255, 60, 0.15) inset;
+}
+
+.todo-item input[type="checkbox"] {
+  margin: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--lime);
+}
+
+.todo-text {
+  overflow-wrap: anywhere;
+  font-size: 1.06rem;
+}
+
+.todo-item.done .todo-text {
+  color: rgba(216, 252, 255, 0.52);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.empty-state {
+  margin: 0.9rem 0 0;
+  font-size: 0.96rem;
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 2px;
+}
+
+@media (min-width: 680px) {
+  .app {
+    padding: 2rem 1.25rem;
+  }
+
+  .hud-header {
+    padding: 1.1rem 1.2rem 1.25rem;
+  }
+
+  .todo-form {
+    gap: 0.7rem;
+  }
+
+  .todo-form button {
+    min-width: 7.3rem;
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cyberpunk Todo HUD</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <main class="app" aria-labelledby="app-title">
+      <header class="hud-header">
+        <p class="kicker">Night City Task Matrix</p>
+        <h1 id="app-title">Todo HUD</h1>
+      </header>
+
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <label class="sr-only" for="todo-input">Add a todo item</label>
+        <input
+          id="todo-input"
+          name="todo"
+          type="text"
+          maxlength="200"
+          placeholder="Enter objective..."
+          required
+        />
+        <button type="submit">Inject</button>
+      </form>
+
+      <p id="empty-state" class="empty-state" role="status">
+        No active objectives. Inject one above.
+      </p>
+
+      <ul id="todo-list" class="todo-list" aria-label="Todo items"></ul>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
