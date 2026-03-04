@@ -2,34 +2,27 @@ import React, { useMemo, useState } from "https://esm.sh/react@18.2.0";
 import { createRoot } from "https://esm.sh/react-dom@18.2.0/client";
 import htm from "https://esm.sh/htm@3.1.1";
 import { ThemeProvider, createGlobalStyle } from "https://esm.sh/styled-components@5.3.11?deps=react@18.2.0,react-dom@18.2.0";
-import {
-  styleReset,
-  Window,
-  WindowHeader,
-  WindowContent,
-  Button,
-  TextInput,
-} from "https://esm.sh/react95@3.0.0-beta.27?deps=react@18.2.0,react-dom@18.2.0,styled-components@5.3.11";
-import original from "https://esm.sh/react95@3.0.0-beta.27/dist/themes/original?deps=react@18.2.0,react-dom@18.2.0,styled-components@5.3.11";
-import msSansSerif from "https://esm.sh/react95@3.0.0-beta.27/dist/fonts/MS-Sans-Serif.woff2";
+import * as React95 from "https://esm.sh/react95@3.0.0-beta.27?deps=react@18.2.0,react-dom@18.2.0,styled-components@5.3.11";
+import * as OriginalTheme from "https://esm.sh/react95@3.0.0-beta.27/dist/themes/original?deps=react@18.2.0,react-dom@18.2.0,styled-components@5.3.11";
 
 const html = htm.bind(React.createElement);
+const react95Lib = React95.default ?? React95;
+const styleReset = react95Lib.styleReset ?? "";
+const Window = react95Lib.Window ?? "section";
+const WindowHeader = react95Lib.WindowHeader ?? "header";
+const WindowContent = react95Lib.WindowContent ?? "div";
+const Button = react95Lib.Button ?? "button";
+const InputComponent = react95Lib.TextInput ?? react95Lib.TextField ?? "input";
+const themeOriginal = OriginalTheme.default ?? OriginalTheme.original ?? {};
 
 const STORAGE_KEY = "win95_todos_v1";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
 
-  @font-face {
-    font-family: "MS-Sans-Serif";
-    src: url(${msSansSerif}) format("woff2");
-    font-style: normal;
-    font-weight: 400;
-  }
-
   body {
     margin: 0;
-    font-family: "MS-Sans-Serif", "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+    font-family: "MS Sans Serif", "Tahoma", "Segoe UI", sans-serif;
   }
 `;
 
@@ -157,9 +150,10 @@ function App() {
         <${WindowContent}>
           <form className="todo-form" onSubmit=${handleSubmit} autoComplete="off">
             <label className="sr-only" htmlFor="todo-input">Add a todo</label>
-            <${TextInput}
+            <${InputComponent}
               id="todo-input"
               className="todo-input"
+              type="text"
               value=${inputValue}
               placeholder="Add a todo"
               maxLength=${200}
@@ -211,7 +205,7 @@ if (!rootElement) {
 
 createRoot(rootElement).render(html`
   <${React.StrictMode}>
-    <${ThemeProvider} theme=${original}>
+    <${ThemeProvider} theme=${themeOriginal}>
       <${GlobalStyles} />
       <${App} />
     <//>
