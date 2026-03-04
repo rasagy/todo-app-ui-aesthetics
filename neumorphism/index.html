@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neumorphism Todo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="todo-card" aria-label="Todo app">
+        <header class="todo-header">
+          <h1>My Todos</h1>
+          <p>Keep it simple. Check it off.</p>
+        </header>
+
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <label class="sr-only" for="todo-input">New todo</label>
+          <input
+            id="todo-input"
+            name="todo"
+            type="text"
+            maxlength="200"
+            placeholder="What needs to be done?"
+            required
+          />
+          <button type="submit" aria-label="Add todo">Add</button>
+        </form>
+
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
