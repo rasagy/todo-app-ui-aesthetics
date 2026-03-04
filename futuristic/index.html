@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Futuristic Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Orbitron:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="todo-card" aria-labelledby="app-title">
+        <header class="app-header">
+          <p class="eyebrow">Personal Command Queue</p>
+          <h1 id="app-title">Futuristic Todo</h1>
+        </header>
+
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <label for="todo-input" class="sr-only">Add a new task</label>
+          <input
+            id="todo-input"
+            class="todo-input"
+            name="todo"
+            type="text"
+            placeholder="Add a mission..."
+            maxlength="180"
+            required
+          />
+          <button class="add-btn" type="submit">Add</button>
+        </form>
+
+        <p id="empty-state" class="empty-state">No tasks yet. Start with one above.</p>
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
