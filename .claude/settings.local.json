@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(node /Users/rasagy/Documents/GitHub/todo-app-ui-aesthetics/take-screenshots.js:*)"
+    ]
+  }
+}
