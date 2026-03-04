@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NES Todo</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="pixel-sky" aria-hidden="true"></div>
+    <div class="pixel-ground" aria-hidden="true"></div>
+
+    <main class="app-wrapper" aria-labelledby="app-title">
+      <section class="nes-container with-title is-dark app-card">
+        <h1 class="title" id="app-title">Quest Log</h1>
+        <p class="intro">Add tasks and clear your quest list.</p>
+
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <label class="sr-only" for="todo-input">Add a todo</label>
+          <input
+            id="todo-input"
+            name="todo"
+            type="text"
+            maxlength="200"
+            placeholder="NEW QUEST"
+            required
+            class="nes-input is-dark"
+          />
+          <button type="submit" class="nes-btn is-warning">ADD</button>
+        </form>
+
+        <p id="empty-state" class="empty-state" role="status">
+          No quests yet. Add one above.
+        </p>
+        <ul id="todo-list" class="todo-list" aria-label="Todo items"></ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
