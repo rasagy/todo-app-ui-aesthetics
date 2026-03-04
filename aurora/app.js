@@ -7,6 +7,7 @@
   const input = document.getElementById("todo-input");
   const list = document.getElementById("todo-list");
   const emptyState = document.getElementById("empty-state");
+  const storageWarning = document.getElementById("storage-warning");
 
   const state = {
     todos: loadTodos(),
@@ -94,6 +95,10 @@
     emptyState.hidden = state.todos.length > 0;
   }
 
+  function setStorageWarningVisibility() {
+    storageWarning.hidden = state.storageAvailable;
+  }
+
   function render() {
     state.todos = sortTodos(state.todos);
     list.textContent = "";
@@ -104,22 +109,32 @@
       const item = document.createElement("li");
       item.className = todo.completed ? "todo-item completed" : "todo-item";
 
+      const checkWrapper = document.createElement("label");
+      checkWrapper.className = "todo-check";
+
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = todo.completed;
-      checkbox.setAttribute("aria-label", `Mark "${todo.text}" as done`);
+      checkbox.setAttribute(
+        "aria-label",
+        todo.completed
+          ? `Mark "${todo.text}" as not done`
+          : `Mark "${todo.text}" as done`
+      );
       checkbox.dataset.todoId = todo.id;
 
       const text = document.createElement("span");
       text.className = "todo-text";
       text.textContent = todo.text;
 
-      item.append(checkbox, text);
+      checkWrapper.append(checkbox);
+      item.append(checkWrapper, text);
       fragment.append(item);
     }
 
     list.append(fragment);
     setEmptyStateVisibility();
+    setStorageWarningVisibility();
   }
 
   function addTodoFromInput() {

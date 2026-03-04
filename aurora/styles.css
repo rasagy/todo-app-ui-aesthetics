@@ -166,11 +166,22 @@ body::after {
 }
 
 .todo-item input[type="checkbox"] {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.2rem;
+  height: 1.2rem;
   margin: 0;
   accent-color: var(--accent);
   flex: 0 0 auto;
+}
+
+.todo-check {
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.72rem;
+  background: rgba(12, 20, 45, 0.48);
+  border: 1px solid rgba(184, 217, 255, 0.2);
 }
 
 .todo-text {
@@ -187,6 +198,16 @@ body::after {
   margin: 0.2rem 0 0.15rem;
   color: rgba(213, 224, 244, 0.78);
   font-size: 0.95rem;
+}
+
+.storage-warning {
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  color: #ffdcb1;
+  font-size: 0.88rem;
+  background: rgba(53, 24, 11, 0.5);
+  border: 1px solid rgba(255, 197, 131, 0.28);
 }
 
 .sr-only {
