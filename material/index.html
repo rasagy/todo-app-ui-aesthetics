@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Material Todo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="https://esm.run/@material/web/all.js"></script>
+  </head>
+  <body>
+    <main class="app-shell" aria-labelledby="app-title">
+      <section class="surface">
+        <header class="header">
+          <p class="eyebrow">Material Todo</p>
+          <h1 id="app-title">Tasks</h1>
+        </header>
+
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <md-outlined-text-field
+            id="todo-input"
+            name="todo"
+            label="Add a task"
+            supporting-text="What needs to get done?"
+            maxlength="200"
+            required
+            class="todo-input"
+          ></md-outlined-text-field>
+          <md-filled-tonal-button type="submit" class="add-button">
+            <span class="material-symbols-outlined" aria-hidden="true">add</span>
+            Add
+          </md-filled-tonal-button>
+        </form>
+
+        <p id="empty-state" class="empty-state" role="status">
+          No tasks yet. Add one above.
+        </p>
+        <ul id="todo-list" class="todo-list" aria-label="Todo items"></ul>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
