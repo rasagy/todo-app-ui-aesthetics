@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ASCII DOS Todo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ascii-backdrop" aria-hidden="true">
+      <pre class="scanline layer-a">
+..::==++**##@@##**++==::..  ..::==++**##@@##**++==::..
+//\\||==--::..::--==||//\\  //\\||==--::..::--==||//\\
+<>[]{}()--==++==--(){}[]<>  <>[]{}()--==++==--(){}[]<>
+++==--::..####..::--==++--  ++==--::..####..::--==++--
+##@@##==++------++==##@@##  ##@@##==++------++==##@@##
+--::..//\\\\////\\\\..::--  --::..//\\\\////\\\\..::--
+      </pre>
+      <pre class="scanline layer-b">
+[[[[....++++====++++....]]]]  [[[[....++++====++++....]]]]
+\\\\////----::::----////\\\\  \\\\////----::::----////\\\\
+()()[]{}||==++++==||{}[]()()  ()()[]{}||==++++==||{}[]()()
+::--==++##@@##@@##++==--::--  ::--==++##@@##@@##++==--::--
+..::..--==++++++==--..::....  ..::..--==++++++==--..::....
+//||\\\\..::--::..\\\\||//  //||\\\\..::--::..\\\\||//
+      </pre>
+    </div>
+
+    <main class="app" aria-labelledby="app-title">
+      <header class="app-header">
+        <p class="chrome-line">+------------------------------------+</p>
+        <h1 id="app-title">| ascii dos todo terminal v1.0       |</h1>
+        <p class="chrome-line">+------------------------------------+</p>
+      </header>
+
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <label class="sr-only" for="todo-input">todo text</label>
+        <input
+          id="todo-input"
+          name="todo"
+          type="text"
+          maxlength="200"
+          required
+          placeholder="type task..."
+        />
+        <button type="submit">[add]</button>
+      </form>
+
+      <p id="empty-state" class="empty-state" role="status">no todos yet. add one above.</p>
+      <ul id="todo-list" class="todo-list" aria-label="todo items"></ul>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

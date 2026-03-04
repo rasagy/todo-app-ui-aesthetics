@@ -1,0 +1,239 @@
+:root {
+  --bg: #040706;
+  --bg-panel: #09110e;
+  --line: #2cff70;
+  --line-dim: #1b8a46;
+  --text: #a7ffbf;
+  --muted: #5dc17f;
+  --danger: #ff6b6b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(circle at top, #0b160f 0%, var(--bg) 50%, #010101 100%);
+  font-family: "Courier New", "Lucida Console", Monaco, monospace;
+  line-height: 1.35;
+  overflow-x: hidden;
+}
+
+.ascii-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.14;
+  z-index: 0;
+}
+
+.scanline {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  margin: 0;
+  color: var(--line);
+  font-size: 0.68rem;
+  white-space: pre;
+  line-height: 1.2;
+  text-shadow: 0 0 0.25rem rgba(44, 255, 112, 0.4);
+}
+
+.layer-a {
+  top: -35%;
+  animation: drift-a 22s linear infinite;
+}
+
+.layer-b {
+  top: -55%;
+  animation: drift-b 30s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes drift-a {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(70vh);
+  }
+}
+
+@keyframes drift-b {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(85vh);
+  }
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 48rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1rem 0.9rem 2rem;
+}
+
+.app-header {
+  margin-bottom: 0.85rem;
+}
+
+.chrome-line,
+h1 {
+  margin: 0;
+  font-size: clamp(0.68rem, 2.8vw, 0.86rem);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+h1 {
+  padding: 0.1rem 0;
+  color: var(--line);
+  text-shadow: 0 0 0.42rem rgba(44, 255, 112, 0.6);
+}
+
+.todo-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.todo-form input,
+.todo-form button {
+  border: 1px solid var(--line-dim);
+  border-radius: 0;
+  min-height: 2.45rem;
+  padding: 0 0.7rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg-panel);
+  box-shadow: inset 0 0 0.6rem rgba(12, 45, 26, 0.45);
+}
+
+.todo-form input::placeholder {
+  color: var(--muted);
+}
+
+.todo-form button {
+  min-width: 4.8rem;
+  cursor: pointer;
+}
+
+.todo-form button:active {
+  transform: translateY(1px);
+}
+
+.empty-state {
+  margin: 0 0 0.65rem;
+  color: var(--muted);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.todo-item {
+  border: 1px solid var(--line-dim);
+  background: rgba(4, 12, 8, 0.82);
+}
+
+.todo-toggle {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: start;
+  gap: 0.5rem;
+  padding: 0.58rem 0.62rem;
+  cursor: pointer;
+}
+
+.todo-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.todo-mark {
+  color: var(--line);
+  min-width: 2.5rem;
+}
+
+.todo-toggle input + .todo-mark::before {
+  content: "[ ]";
+}
+
+.todo-toggle input:checked + .todo-mark::before {
+  content: "[x]";
+}
+
+.todo-text {
+  overflow-wrap: anywhere;
+}
+
+.todo-item.completed .todo-text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.todo-toggle input:focus-visible + .todo-mark {
+  outline: 2px solid var(--line);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--line);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (min-width: 640px) {
+  .app {
+    padding: 1.7rem 1.3rem 2.5rem;
+  }
+
+  .chrome-line,
+  h1 {
+    font-size: 1rem;
+  }
+
+  .scanline {
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer-a,
+  .layer-b {
+    animation: none;
+  }
+}
