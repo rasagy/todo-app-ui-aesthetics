@@ -3,24 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skeuomorphic Todo</title>
+    <title>Notes Todo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="app-shell" aria-label="Todo app">
-      <section class="phone-frame" aria-label="Todo list container">
-        <header class="app-header">
-          <h1>Todo</h1>
-          <p>Keep things done, the old-school way.</p>
+      <section class="notes-card" aria-label="Todo list container">
+        <header class="notes-header">
+          <h1>Todo List</h1>
+          <p>Classic notes style, one page at a time.</p>
         </header>
 
         <form id="todo-form" class="add-row" autocomplete="off">
-          <label for="todo-input" class="visually-hidden">New todo</label>
-          <input id="todo-input" name="todo" type="text" maxlength="200" placeholder="Add a new task..." required />
+          <label for="todo-input" class="visually-hidden">New todo item</label>
+          <input
+            id="todo-input"
+            name="todo"
+            type="text"
+            maxlength="200"
+            placeholder="Write a task..."
+            required
+          />
           <button type="submit" id="add-button">Add</button>
         </form>
 
-        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+        <ul id="todo-list" class="todo-list" aria-live="polite">
+          <li class="empty-state">No todos yet. Add one above.</li>
+        </ul>
       </section>
     </main>
 
