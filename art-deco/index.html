@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Art Deco Todo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Raleway:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app" aria-labelledby="app-title">
+      <div class="deco-frame">
+        <div class="deco-header">
+          <div class="deco-ornament">&#9670;</div>
+          <h1 id="app-title">To-Do List</h1>
+          <div class="deco-rule">
+            <span class="deco-rule-line"></span>
+            <span class="deco-rule-diamond">&#9670;</span>
+            <span class="deco-rule-line"></span>
+          </div>
+        </div>
+
+        <form id="todo-form" class="todo-form" autocomplete="off">
+          <label class="sr-only" for="todo-input">Add a todo</label>
+          <input
+            id="todo-input"
+            name="todo"
+            type="text"
+            maxlength="200"
+            placeholder="What needs doing&hellip;"
+            required
+          />
+          <button type="submit">Add</button>
+        </form>
+
+        <div class="deco-divider">
+          <span class="deco-divider-wing"></span>
+          <span class="deco-divider-center">&#9670;</span>
+          <span class="deco-divider-wing"></span>
+        </div>
+
+        <p id="empty-state" class="empty-state" role="status">
+          No tasks yet &mdash; add one above.
+        </p>
+        <ul id="todo-list" class="todo-list" aria-label="Todo items"></ul>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
