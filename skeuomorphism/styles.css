@@ -1,0 +1,191 @@
+:root {
+  --bg-top: #bcc7d4;
+  --bg-mid: #d6dee8;
+  --bg-bottom: #9faebe;
+  --panel-top: #f5f6f8;
+  --panel-bottom: #d7dbe2;
+  --panel-border: #7c8897;
+  --ink: #263241;
+  --muted: #5e6978;
+  --line: #aab3c0;
+  --button-top: #f6f7f9;
+  --button-bottom: #b9c3d0;
+  --button-border: #6c7888;
+  --accent-top: #f8fbff;
+  --accent-bottom: #d3dde9;
+  --accent-border: #7b8898;
+  --done: #7b8491;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+}
+
+body {
+  background: radial-gradient(circle at 20% 0%, #ebeff5 0%, transparent 28%),
+    radial-gradient(circle at 80% 100%, #8999ac 0%, transparent 34%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 44%, var(--bg-bottom) 100%);
+  display: grid;
+  place-items: start center;
+  padding: 1.25rem 0.8rem 2rem;
+}
+
+.app-shell {
+  width: 100%;
+}
+
+.phone-frame {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid #5d6671;
+  background: linear-gradient(180deg, #f1f3f7 0%, #dde2e9 100%);
+  box-shadow: 0 2px 0 #ffffff90 inset, 0 -2px 0 #0000001f inset, 0 14px 28px #23324359;
+  padding: 0.9rem;
+}
+
+.app-header {
+  border-radius: 0.75rem;
+  padding: 0.85rem 0.85rem 0.75rem;
+  margin-bottom: 0.85rem;
+  border: 1px solid var(--panel-border);
+  background: linear-gradient(180deg, var(--panel-top) 0%, var(--panel-bottom) 100%);
+  box-shadow: 0 1px 0 #ffffffc9 inset, 0 -1px 0 #8691a01a inset;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.app-header p {
+  margin: 0.2rem 0 0;
+  font-size: 0.83rem;
+  color: var(--muted);
+}
+
+.add-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+#todo-input {
+  width: 100%;
+  min-height: 2.55rem;
+  border-radius: 0.7rem;
+  border: 1px solid #788493;
+  padding: 0 0.75rem;
+  font-size: 1rem;
+  color: var(--ink);
+  background: linear-gradient(180deg, #ffffff 0%, #e8edf4 100%);
+  box-shadow: 0 2px 4px #50607022 inset, 0 1px 0 #ffffffc2;
+}
+
+#todo-input:focus {
+  outline: none;
+  border-color: #506274;
+  box-shadow: 0 0 0 2px #d5e0ec, 0 2px 4px #5060702b inset;
+}
+
+#add-button {
+  min-height: 2.55rem;
+  min-width: 4.3rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--button-border);
+  padding: 0 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e2a39;
+  background: linear-gradient(180deg, var(--button-top) 0%, var(--button-bottom) 100%);
+  text-shadow: 0 1px 0 #ffffffb0;
+  box-shadow: 0 1px 0 #ffffffcf inset, 0 -1px 0 #5f6e7d1f inset;
+}
+
+#add-button:active {
+  transform: translateY(1px);
+  background: linear-gradient(180deg, #bcc6d1 0%, #edf2f8 100%);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.75rem;
+  border: 1px solid var(--accent-border);
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--accent-top) 0%, var(--accent-bottom) 100%);
+  box-shadow: 0 1px 0 #ffffffc7 inset, 0 -1px 0 #8b97a620 inset;
+}
+
+.todo-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.68rem 0.75rem;
+  min-height: 2.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.todo-item:first-child {
+  border-top: none;
+}
+
+.todo-toggle {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: #526579;
+}
+
+.todo-text {
+  font-size: 0.97rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.todo-item.done .todo-text {
+  color: var(--done);
+  text-decoration: line-through;
+}
+
+.empty-state {
+  padding: 1rem 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding-top: 2.5rem;
+  }
+
+  .app-shell {
+    max-width: 460px;
+  }
+
+  .phone-frame {
+    border-radius: 1.2rem;
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skeuomorphic Todo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="Todo app">
+      <section class="phone-frame" aria-label="Todo list container">
+        <header class="app-header">
+          <h1>Todo</h1>
+          <p>Keep things done, the old-school way.</p>
+        </header>
+
+        <form id="todo-form" class="add-row" autocomplete="off">
+          <label for="todo-input" class="visually-hidden">New todo</label>
+          <input id="todo-input" name="todo" type="text" maxlength="200" placeholder="Add a new task..." required />
+          <button type="submit" id="add-button">Add</button>
+        </form>
+
+        <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
