@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maximalism Todo Blast</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="wallpaper wallpaper-stars" aria-hidden="true"></div>
+    <div class="wallpaper wallpaper-stripes" aria-hidden="true"></div>
+    <div class="wallpaper wallpaper-grid" aria-hidden="true"></div>
+
+    <main class="app" aria-labelledby="app-title">
+      <header class="masthead">
+        <p class="badge">Portal Task Zone</p>
+        <h1 id="app-title">Todo Blastboard</h1>
+        <p class="tagline">High-volume list chaos, one checkbox at a time.</p>
+      </header>
+
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <label class="sr-only" for="todo-input">Add a todo item</label>
+        <input
+          id="todo-input"
+          name="todo"
+          type="text"
+          maxlength="200"
+          placeholder="Type a task and hit Add"
+          required
+        />
+        <button type="submit">Add</button>
+      </form>
+
+      <p id="empty-state" class="empty-state" role="status">
+        No todos yet. Load this board with tasks.
+      </p>
+
+      <ul id="todo-list" class="todo-list" aria-label="Todo items"></ul>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
