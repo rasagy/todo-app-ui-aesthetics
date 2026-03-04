@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Biomorphic Todo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-bg" aria-hidden="true">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+      <div class="blob blob-c"></div>
+    </div>
+
+    <main class="app-card" aria-labelledby="app-title">
+      <header class="app-header">
+        <h1 id="app-title">Flow Todo</h1>
+        <p class="subtitle">A soft list for hard tasks.</p>
+      </header>
+
+      <form id="todo-form" class="todo-form" autocomplete="off">
+        <label class="sr-only" for="todo-input">Add a todo</label>
+        <input
+          id="todo-input"
+          name="todo"
+          type="text"
+          maxlength="200"
+          placeholder="What should flow forward?"
+          required
+        />
+        <button type="submit">Add</button>
+      </form>
+
+      <p id="storage-note" class="storage-note" role="status" hidden>
+        Local save is unavailable in this browser context.
+      </p>
+      <p id="empty-state" class="empty-state" role="status">
+        No todos yet. Add one above.
+      </p>
+
+      <ul id="todo-list" class="todo-list" aria-label="Todo items"></ul>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
